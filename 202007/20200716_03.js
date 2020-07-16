@@ -9,4 +9,4 @@ function add(n) {
   return fn;
 }
 
-console.log(add(3)(4).valueOf());
+console.log(add(3)(4));

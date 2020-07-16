@@ -4,18 +4,17 @@
 我们可以不考虑输出结果的顺序。
 */
 
-
 var intersect = function(nums1, nums2) {
-    let obj = {}
-    let res = []
-    for (const x of nums1) obj[x] ? obj[x]++ : obj[x] = 1
-    for (const y of nums2) {
-        if (obj[y]) {
-            res.push(y)
-            obj[y]--
-        }
+  let obj = {};
+  let res = [];
+  for (const x of nums1) obj[x] ? obj[x]++ : (obj[x] = 1);
+  for (const y of nums2) {
+    if (obj[y]) {
+      res.push(y);
+      obj[y]--;
     }
-    return res
+  }
+  return res;
 };
 
 console.log(intersect([1, 1, 6, 4, 4, 4, 1], [1, 2, 3, 4, 3, 4]));
