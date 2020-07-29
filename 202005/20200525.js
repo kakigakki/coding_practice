@@ -16,4 +16,14 @@ var bar = {
     a: 4,
 };
 
+//模拟一个apply函数
+Function.prototype.apply2 = function(obj, arg) {
+    let context = obj || window
+    context.fn = this
+    let res = context.fn(...arg)
+    Reflect.deleteProperty(context, fn)
+    return res
+}
+
+
 console.log(foo.call2(bar, 10, 1006));
