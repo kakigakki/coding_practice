@@ -17,4 +17,29 @@ var subarraySum = function(nums, k) {
   return res;
 };
 
-console.log(subarraySum([1, 2, 3, 3, 5], 6));
+//使用前缀和map,达到事件复杂度为0(n)
+var subarraySum2 = function(nums, k) {
+  let map = {};
+  let preSum = [0];
+  let res = 0;
+  for (let i = 0; i < nums.length; i++) {
+    preSum.push(preSum[i] + nums[i]);
+  }
+  preSum.shift();
+
+  for (let i = 0; i < preSum.length; i++) {
+    const ele = preSum[i];
+    console.log(ele);
+    if (ele == k) res++;
+    console.log(res);
+    if (!map[ele]) {
+      map[ele] = 1;
+    }
+    if (map[ele - k]) {
+      res++;
+    }
+  }
+  return res;
+};
+
+console.log(subarraySum2([1], 0));
