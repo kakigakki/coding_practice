@@ -15,28 +15,31 @@
    2
 返回[2].
  */
-
+//中序遍历
 var findMode = function(root) {
-    let res = {};
-    inOrder(root, res);
+    let resHash = {};
+    let resHash2 = [];
+    inOrder(root, resHash);
     let maxValue = 0;
-    for (const key in res) {
-        if (res[key] > maxValue) {
-            if (res2[0]) {
-                if (res[res2[0]] != res[key]) {
-                    res2 = [];
+    for (const key in resHash) {
+        if (resHash[key] >= maxValue) {
+            const curMode = resHash2[0];
+            if (curMode) {
+                if (resHash[curMode] != resHash[key]) {
+                    resHash2 = [];
                 }
             }
-            res2.push(key);
-            maxValue == res[key];
+            resHash2.push(key);
+            maxValue = resHash[key];
         }
     }
+    return resHash2;
 };
 
-var inOrder = function(node, res) {
+var inOrder = function(node, resHash) {
     if (node) {
-        inOrder(node.left, res);
-        res[node.val] ? res[node.val]++ : (res[node.val] = 0);
-        inOrder(node.right, res);
+        inOrder(node.left, resHash);
+        resHash[node.val] ? resHash[node.val]++ : (resHash[node.val] = 1);
+        inOrder(node.right, resHash);
     }
 };
