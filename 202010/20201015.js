@@ -52,4 +52,5 @@ var maxDepth = function(root) {
         }
         dep++
     }
+    return dep
 };
