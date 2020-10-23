@@ -43,6 +43,7 @@
  * @param {TreeNode} t
  * @return {string}
  */
+
 var tree2str = function(t) {
     let str = ""
     let inOrder = (node) => {
@@ -50,7 +51,8 @@ var tree2str = function(t) {
             str += `(${node.val}`
             inOrder(node.left)
             inOrder(node.right)
-            while (str.slice(-2, -1) == "()") {
+                //处理多余的括号
+            while (str.slice(-2) == "()") {
                 str = str.slice(0, -2)
             }
             str += `)`
@@ -59,5 +61,5 @@ var tree2str = function(t) {
         }
     }
     inOrder(t)
-    return str
+    return str.slice(0, 1).slice(-1)
 };
